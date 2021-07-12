@@ -3,10 +3,10 @@ import { ScrollView, StyleSheet, Text, View, Button } from 'react-native';
 import Pot from './Pot';
 
 export default function App() {
-  const [statePots, setStatePots] = useState([{ text: 'Smells like Badussy'}]);
+  const [statePots, setStatePots] = useState([{ text: 'Bet 1'}]);
   
   const onButtonPress = () => {
-    setStatePots( arr => [...arr, {text: `Wet Booty Dick and Pussy :-)`}])
+    setStatePots( arr => [...arr, {text: `Bet 2`}])
   }
   
   return (
@@ -16,9 +16,8 @@ export default function App() {
       </View>
       <ScrollView>
         {statePots.map((localState, index) => (
-          <Pot key={index} name={localState.text}></Pot>
+            <Pot key={index} name={localState.text} removePot={setStatePots}/>
         ))}
-        <Button onPress={onButtonPress} title="What does that mean?"></Button>
       </ScrollView>
     </View>
   );
