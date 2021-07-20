@@ -1,30 +1,29 @@
 import React, { Component } from 'react'
 import {StyleSheet, View, Text, TextInput, Button} from 'react-native'
 
-const Pot = ({key, name, removePot}) => {
-
-    const handleRemove = () => {
-        console.log("Bruh?");
+class Pot extends Component {
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.desc}>{this.props.text}</Text>
+                <TextInput
+                style={{height: 50, padding: 10, fontSize: 30}}
+                keyboardType='numeric'
+                maxLength={9}
+                placeholder='Enter Bet Amount'
+                />
+                <Button onPress={() => this.props.onDelete(this.props.text)} title="Remove"><Text style={styles.desc}>Remove</Text></Button>
+            </View>
+        )
     }
-    return (
-        <View style={styles.container}>
-            <Text style={styles.desc}>{name}</Text>
-            <TextInput
-            style={{height: 50, padding: 10, fontSize: 30}}
-            keyboardType='numeric'
-            maxLength={9}
-            placeholder='Enter Bet Amount'
-            />
-            <Button onClick={handleRemove} title="Remove"></Button>
-        </View>
-    )
+    
 }
 
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
         height: 128,
-        width: '90%',
+        width: '99%',
         marginHorizontal: 10,
         marginVertical: 15,
         borderRadius: 20

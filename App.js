@@ -1,26 +1,40 @@
-import React, {useState} from 'react';
+import React, {Component} from 'react';
 import { ScrollView, StyleSheet, Text, View, Button } from 'react-native';
 import Pot from './Pot';
 
-export default function App() {
-  const [statePots, setStatePots] = useState([{ text: 'Bet 1'}]);
-  
-  const onButtonPress = () => {
-    setStatePots( arr => [...arr, {text: `Bet 2`}])
+export default class App extends Component {
+  state = {
+    items: [{text: 'Pot 1'}]
   }
+
   
-  return (
-    <View style={styles.container}>
-      <View style={styles.begginingBar}>
-        <Text style={styles.sidepotText}>sidepot</Text>
+  handleDelete = text => {
+    const items = this.state.items.filter(item => item.text !== text)
+    this.setState({ items: items})
+  }
+
+  handleAdd = () => {
+    this.setState({
+      items: this.state.items.concat({text: 'Pot 2'})
+    })
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.begginingBar}>
+          <Text style={styles.sidepotText}>sidepot</Text>
+        </View>
+        <ScrollView>
+          {this.state.items.map((localState, index) => (
+              <Pot key={index} text={localState.text} onDelete={this.handleDelete}/>
+          ))}
+        </ScrollView>
       </View>
-      <ScrollView>
-        {statePots.map((localState, index) => (
-            <Pot key={index} name={localState.text} removePot={setStatePots}/>
-        ))}
-      </ScrollView>
-    </View>
-  );
+    )
+  }
+    
+  
 }
 
 const styles = StyleSheet.create({
