@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { ScrollView, StyleSheet, Text, View, Button } from 'react-native';
 import Pot from './Pot';
+import ActionButton from 'react-native-action-button';
 
 export default class App extends Component {
   state = {
@@ -14,8 +15,9 @@ export default class App extends Component {
   }
 
   handleAdd = () => {
+    const text = 'Pot ' + (this.state.items.length + 1);
     this.setState({
-      items: this.state.items.concat({text: 'Pot 2'})
+      items: this.state.items.concat({text})
     })
   }
 
@@ -30,6 +32,10 @@ export default class App extends Component {
               <Pot key={index} text={localState.text} onDelete={this.handleDelete}/>
           ))}
         </ScrollView>
+        <ActionButton 
+          buttonColor="rgba(231, 31, 64, 1)"
+          onPress={this.handleAdd}
+          position="right"/>
       </View>
     )
   }

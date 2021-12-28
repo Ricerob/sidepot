@@ -5,7 +5,8 @@ class Pot extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.desc}>{this.props.text}</Text>
+                <TextInput placeholder={this.props.text}
+                style={{padding: 10}} />
                 <TextInput
                 style={{height: 50, padding: 10, fontSize: 30}}
                 keyboardType='numeric'
